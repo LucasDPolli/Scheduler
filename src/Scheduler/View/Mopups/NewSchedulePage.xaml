@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             xmlns:mopupsanim="clr-namespace:Mopups.Animations;assembly=Mopups"
+             x:Class="Scheduler.View.Mopups.NewSchedulePage"
+             CloseWhenBackgroundIsClicked="False"
+             BackgroundColor="#80000000">
+
+    <mopups:PopupPage.Animation>
+        <mopupsanim:ScaleAnimation
+            DurationIn="700"
+            DurationOut="300"
+            EasingIn="BounceOut"
+            PositionIn="Bottom"
+            PositionOut="Center"
+            ScaleIn="1"
+            ScaleOut="0.7"/>
+    </mopups:PopupPage.Animation>
+
+    <ScrollView VerticalOptions="Center"
+                HorizontalOptions="Center">
+        <Border x:Name="bd_Mopup"
+                VerticalOptions="Fill"
+                HorizontalOptions="Center"
+                BackgroundColor="WhiteSmoke">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="40, 0, 0, 40" />
+            </Border.StrokeShape>
+
+            <ScrollView x:Name="sv_MopupAddSchedule" 
+                        VerticalOptions="Start"
+                        VerticalScrollBarVisibility="Always"
+                        Padding="20">
+                
+                <StackLayout x:Name="sl_MopupAddSchedule"
+                             Padding="10">
+
+                    <StackLayout x:Name="sl_Infos"
+                                 VerticalOptions="Center">
+                        
+                        <StackLayout Orientation="Horizontal"
+                                     Margin="0, 10">
+                            
+                            <Label Text="Title: "
+                                   FontSize="Subtitle"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"/>
+                            
+                            <Entry Text="{Binding TitleView}" 
+                                   HorizontalOptions="FillAndExpand"/>
+                            
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     Margin="0, 10">
+                            
+                            <Label Text="Description: "
+                                   FontSize="Subtitle"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"/>
+                            
+                            <Editor x:Name="ed_desc"
+                                    Text="{Binding DescriptionView}" 
+                                    AutoSize="TextChanges"
+                                    HorizontalOptions="FillAndExpand"
+                                    MaxLength="100"/>
+                            
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     Margin="0, 10">
+                            
+                            <Label Text="Routine: "
+                                   FontSize="Subtitle"
+                                   FontAttributes="Bold"
+                                   VerticalOptions="Center"/>
+                            
+                            <Picker ItemsSource="{Binding RoutinesView}" 
+                                    SelectedItem="{Binding RoutineSelected}" 
+                                    HorizontalTextAlignment="Center"
+                                    HorizontalOptions="FillAndExpand"
+                                    SelectedIndex="1"/>
+                            
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout x:Name="sl_SelectDate"
+                                 VerticalOptions="Center"
+                                 Padding="10"
+                                 Margin="0,5,0,10">
+
+                        <StackLayout x:Name="sl_Start"
+                                     Orientation="Horizontal"
+                                     Margin="0, 10">
+
+                            <Label x:Name="lbl_Start"
+                                   Text="Start: "
+                                   FontSize="Subtitle"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"/>       
+
+                            <DatePicker x:Name="dp_DateStart"
+                                        Date="{Binding Date_Start}"
+                                        FontSize="Medium"
+                                        FontAttributes="Bold"
+                                        TextColor="OrangeRed"
+                                        HorizontalOptions="CenterAndExpand"/>
+
+                            <TimePicker x:Name="tp_TimeStart"
+                                        Time="{Binding Time_Start}"
+                                        Format="HH:mm"
+                                        FontSize="Medium"
+                                        FontAttributes="Bold"
+                                        TextColor="OrangeRed"
+                                        HorizontalOptions="CenterAndExpand"/>
+
+                        </StackLayout>
+
+                        <StackLayout x:Name="sl_End"
+                                     Orientation="Horizontal"
+                                     Margin="0,10">
+
+                            <Label x:Name="lbl_End"
+                                   Text="End: "
+                                   FontSize="Subtitle"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"/>
+
+                            <DatePicker x:Name="dp_DateEnd"
+                                        Date="{Binding Date_End}"
+                                        FontSize="Medium"
+                                        FontAttributes="Bold"
+                                        TextColor="OrangeRed"
+                                        HorizontalOptions="CenterAndExpand"/>
+
+                            <TimePicker x:Name="tp_TimeEnd"
+                                        Time="{Binding Time_End}"
+                                        Format="HH:mm"
+                                        FontSize="Medium"
+                                        FontAttributes="Bold"
+                                        TextColor="OrangeRed"
+                                        HorizontalOptions="CenterAndExpand"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout x:Name="sl_Buttons"
+                                 Orientation="Horizontal"
+                                 VerticalOptions="EndAndExpand"
+                                 HorizontalOptions="Fill"
+                                 Margin="0, 10, 0, 15">
+
+                        <Button Text="Cancel"
+                                Padding="20, 15"
+                                FontSize="Medium"
+                                VerticalOptions="End"
+                                HorizontalOptions="StartAndExpand"
+                                Command="{Binding Cancel_NewSchedule_Command}"/>
+                        
+                        <Button Text="Add"
+                                Padding="20, 15"
+                                FontSize="Medium"
+                                VerticalOptions="End"
+                                HorizontalOptions="EndAndExpand"
+                                Command="{Binding Add_NewSchedule_Command}"/>
+
+                    </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+            
+        </Border>
+    </ScrollView>
+</mopups:PopupPage>

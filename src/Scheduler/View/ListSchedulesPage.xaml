@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Scheduler.View.ListSchedulesPage"
+             Title="ListSchedulesPage">
+    
+    <StackLayout>
+
+        <StackLayout Margin="12, 15">
+            <SearchBar Placeholder="Enter here your search"
+                       HorizontalOptions="CenterAndExpand"/>
+
+            <StackLayout Orientation="Horizontal" 
+                         Margin="10">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <DatePicker x:Name="date_SourceStart" 
+                                Date="{Binding Dta_SourceStart}"
+                                FontSize="Subtitle"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button x:Name="btn_orderBy"
+                            Text="Recentes"
+                            HorizontalOptions="CenterAndExpand"
+                            HeightRequest="40"
+                            CornerRadius="100"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <DatePicker x:Name="date_timeSourceEnd" 
+                                FontSize="Subtitle"/>
+                </StackLayout>
+            </StackLayout>
+            <Button x:Name="btn_search"
+                    HorizontalOptions="FillAndExpand"
+                    CornerRadius="100"
+                    HeightRequest="35"
+                    Margin="30, 0"/>
+        </StackLayout>
+
+        <ListView x:Name="listView_Schedules"
+                  ItemsSource="{Binding ScheduledListView}"
+                  HasUnevenRows="True"
+                  IsPullToRefreshEnabled="True"
+                  Refreshing="ListView_Refreshing"
+                  SelectionMode="None"
+                  Margin="20">    
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ScrollView IsVisible="true">
+                            <StackLayout VerticalOptions="Center">
+                                <Label Text="{Binding Title}" 
+                                FontSize="Subtitle" 
+                                FontAttributes="Bold"
+                                VerticalOptions="Center"/>
+                                <Label Text="{Binding Description}"
+                                VerticalOptions="Center"/>
+
+                                <StackLayout Orientation="Horizontal"
+                                      VerticalOptions="Center">
+                                    <Label Text="Start: "/>
+                                    <Label Text="{Binding DateTime_Start_Text}"/>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal"
+                                      VerticalOptions="Center">
+                                    <Label Text="End: "/>
+                                    <Label Text="{Binding DateTime_End_Text}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ScrollView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
